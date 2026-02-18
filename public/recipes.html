@@ -1,0 +1,29 @@
+<h1>Recipes</h1>
+
+<input id="search" placeholder="Search...">
+<select id="filterDifficulty">
+  <option value="">All</option>
+  <option>Easy</option>
+  <option>Medium</option>
+  <option>Hard</option>
+</select>
+<input id="filterPrep" type="number" placeholder="Max Prep Time">
+<button onclick="loadRecipes()">Apply</button>
+
+<hr>
+
+<input id="title" placeholder="Title">
+<input id="ingredients" placeholder="Ingredient1, Ingredient2">
+<input id="prepTime" type="number" placeholder="Prep Time">
+<select id="difficulty">
+  <option>Easy</option>
+  <option>Medium</option>
+  <option>Hard</option>
+</select>
+<button onclick="addRecipe()">Add Recipe</button>
+
+<hr>
+
+<div id="recipes"></div>
+
+<script src="/js/recipes.js"></script>
