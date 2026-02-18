@@ -14,9 +14,19 @@ app.use(express.static("public"));
 
 app.use("/api/recipes", recipesRouter);
 app.use("/api/inventory", inventoryRouter);
-
-await connectDB();
-
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+// Health check
+app.get('/api/health', (_req, res) => {
+  res.json({ status: 'ok', message: 'RecipeRoulette API is running 🍽️' });
 });
+
+// Start server after DB connects
+connectDB()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running at http://localhost:${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error('❌ Failed to connect to MongoDB:', err);
+    process.exit(1);
+  });

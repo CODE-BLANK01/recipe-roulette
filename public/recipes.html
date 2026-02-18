@@ -1,29 +1,120 @@
-<h1>Recipes</h1>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipes – RecipeRoulette</title>
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/recipes.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="index.html" class="nav-logo">🍽️ RecipeRoulette</a>
+      <ul class="nav-links">
+        <li><a href="recipes.html" class="active">Recipes</a></li>
+        <li><a href="inventory.html">Inventory</a></li>
+        <li><a href="roulette.html">Roulette</a></li>
+      </ul>
+    </nav>
 
-<input id="search" placeholder="Search...">
-<select id="filterDifficulty">
-  <option value="">All</option>
-  <option>Easy</option>
-  <option>Medium</option>
-  <option>Hard</option>
-</select>
-<input id="filterPrep" type="number" placeholder="Max Prep Time">
-<button onclick="loadRecipes()">Apply</button>
+    <main class="page-container">
+      <div class="page-header">
+        <h1>Recipes</h1>
+        <button class="btn btn-primary" id="btn-open-add">+ Add Recipe</button>
+      </div>
 
-<hr>
+      <!-- Filters -->
+      <section class="filters">
+        <input
+          type="search"
+          id="search"
+          class="input"
+          placeholder="Search by name or ingredient…"
+        />
+        <select id="filter-difficulty" class="input">
+          <option value="">All Difficulties</option>
+          <option value="Easy">Easy</option>
+          <option value="Medium">Medium</option>
+          <option value="Hard">Hard</option>
+        </select>
+        <input
+          type="number"
+          id="filter-prep"
+          class="input"
+          placeholder="Max prep time (min)"
+          min="1"
+        />
+        <label class="checkbox-label">
+          <input type="checkbox" id="filter-favorites" />
+          ⭐ Favorites only
+        </label>
+        <button class="btn btn-secondary" id="btn-clear-filters">Clear</button>
+      </section>
 
-<input id="title" placeholder="Title">
-<input id="ingredients" placeholder="Ingredient1, Ingredient2">
-<input id="prepTime" type="number" placeholder="Prep Time">
-<select id="difficulty">
-  <option>Easy</option>
-  <option>Medium</option>
-  <option>Hard</option>
-</select>
-<button onclick="addRecipe()">Add Recipe</button>
+      <!-- Recipe Grid -->
+      <section id="recipe-grid" class="recipe-grid">
+        <p class="loading-text">Loading recipes…</p>
+      </section>
+    </main>
 
-<hr>
+    <!-- Add / Edit Modal -->
+    <div id="modal-overlay" class="modal-overlay hidden">
+      <div class="modal">
+        <div class="modal-header">
+          <h2 id="modal-title">Add Recipe</h2>
+          <button class="modal-close" id="btn-close-modal">&times;</button>
+        </div>
+        <form id="recipe-form" novalidate>
+          <input type="hidden" id="recipe-id" />
 
-<div id="recipes"></div>
+          <label for="input-title">Title</label>
+          <input type="text" id="input-title" class="input" placeholder="e.g. Spaghetti Bolognese" required />
 
-<script src="/js/recipes.js"></script>
+          <label for="input-ingredients">Ingredients <span class="hint">(one per line)</span></label>
+          <textarea id="input-ingredients" class="input" rows="5" placeholder="spaghetti&#10;ground beef&#10;tomato sauce" required></textarea>
+
+          <label for="input-instructions">Instructions</label>
+          <textarea id="input-instructions" class="input" rows="4" placeholder="Describe the cooking steps…" required></textarea>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="input-prep">Prep Time (min)</label>
+              <input type="number" id="input-prep" class="input" min="1" placeholder="30" required />
+            </div>
+            <div class="form-group">
+              <label for="input-difficulty">Difficulty</label>
+              <select id="input-difficulty" class="input" required>
+                <option value="">Select…</option>
+                <option value="Easy">Easy</option>
+                <option value="Medium">Medium</option>
+                <option value="Hard">Hard</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" id="btn-cancel">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Recipe</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Detail Modal -->
+    <div id="detail-overlay" class="modal-overlay hidden">
+      <div class="modal modal-detail">
+        <div class="modal-header">
+          <h2 id="detail-title"></h2>
+          <button class="modal-close" id="btn-close-detail">&times;</button>
+        </div>
+        <div id="detail-body"></div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>🍽️ RecipeRoulette &mdash; Built with Node, Express & MongoDB</p>
+    </footer>
+
+    <script type="module" src="js/recipes.js"></script>
+  </body>
+</html>

@@ -1,0 +1,193 @@
+/* ── Page subtitle ──────────────────────────────────────── */
+.page-subtitle {
+  color: var(--clr-text-muted);
+  font-size: 1rem;
+  margin-top: var(--space-xs);
+}
+
+/* ── Spin button ────────────────────────────────────────── */
+.roulette-actions {
+  display: flex;
+  justify-content: center;
+  margin: var(--space-xl) 0;
+}
+
+.btn-spin {
+  font-size: 1.1rem;
+  padding: 0.85rem 2.5rem;
+  border-radius: 999px;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-spin:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-spin.spinning {
+  animation: spin-pulse 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes spin-pulse {
+  from { transform: scale(1);    box-shadow: var(--shadow-md); }
+  to   { transform: scale(1.07); box-shadow: var(--shadow-lg); }
+}
+
+/* ── Roulette Sections ──────────────────────────────────── */
+.roulette-section {
+  margin-bottom: var(--space-2xl);
+}
+
+.section-title {
+  font-size: 1.4rem;
+  color: var(--clr-text);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xs);
+}
+
+.section-icon {
+  font-size: 1.4rem;
+}
+
+.section-count {
+  font-size: 0.9rem;
+  background: var(--clr-surface-alt);
+  border: 1px solid var(--clr-border);
+  color: var(--clr-text-muted);
+  padding: 0.1rem 0.55rem;
+  border-radius: 999px;
+  font-family: var(--font-ui);
+  font-weight: 600;
+}
+
+.section-desc {
+  font-size: 0.88rem;
+  color: var(--clr-text-muted);
+  margin-bottom: var(--space-md);
+}
+
+/* ── Recipe cards in roulette (reuse grid, add missing pill) */
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-md);
+}
+
+.recipe-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.recipe-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.recipe-card h3 {
+  font-size: 1rem;
+  color: var(--clr-text);
+}
+
+.recipe-card .card-meta {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.missing-list {
+  margin-top: var(--space-sm);
+  padding-top: var(--space-sm);
+  border-top: 1px dashed var(--clr-border);
+}
+
+.missing-list p {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--clr-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-xs);
+}
+
+.missing-pill {
+  display: inline-block;
+  background: var(--clr-warning-bg);
+  color: var(--clr-warning-text);
+  border: 1px solid #e0c96a;
+  border-radius: 999px;
+  padding: 0.15rem 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin: 2px;
+}
+
+/* ── Shopping List ──────────────────────────────────────── */
+.shopping-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-xs);
+}
+
+.shopping-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md) var(--space-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.shopping-list li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-xs) 0;
+  border-bottom: 1px solid var(--clr-border);
+  font-size: 0.92rem;
+}
+
+.shopping-list li:last-child {
+  border-bottom: none;
+}
+
+.shopping-list li::before {
+  content: '🛒';
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.shopping-recipe-tag {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: var(--clr-text-muted);
+  font-style: italic;
+  white-space: nowrap;
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .recipe-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .shopping-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+}

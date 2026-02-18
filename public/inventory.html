@@ -1,16 +1,128 @@
-<h1>Add Inventory Item</h1>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventory – RecipeRoulette</title>
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/inventory.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="index.html" class="nav-logo">🍽️ RecipeRoulette</a>
+      <ul class="nav-links">
+        <li><a href="recipes.html">Recipes</a></li>
+        <li><a href="inventory.html" class="active">Inventory</a></li>
+        <li><a href="roulette.html">Roulette</a></li>
+      </ul>
+    </nav>
 
-<input id="name" placeholder="Item Name">
-<input id="quantity" type="number" placeholder="Quantity">
-<input id="unit" placeholder="Unit (kg, bottles, pcs)">
-<input id="category" placeholder="Category">
-<input id="expirationDate" type="date">
+    <main class="page-container">
+      <div class="page-header">
+        <h1>My Inventory</h1>
+        <button class="btn btn-primary" id="btn-open-add">+ Add Ingredient</button>
+      </div>
 
-<button onclick="addItem()">Add Item</button>
+      <!-- Filters -->
+      <section class="filters">
+        <select id="filter-category" class="input">
+          <option value="">All Categories</option>
+          <option value="Produce">Produce</option>
+          <option value="Meat">Meat</option>
+          <option value="Seafood">Seafood</option>
+          <option value="Dairy">Dairy</option>
+          <option value="Pantry">Pantry</option>
+          <option value="Spices">Spices</option>
+          <option value="Protein">Protein</option>
+        </select>
+        <label class="checkbox-label">
+          <input type="checkbox" id="filter-expiry" />
+          Sort by expiry date
+        </label>
+        <button class="btn btn-secondary" id="btn-clear-filters">Clear</button>
+      </section>
 
-<hr>
+      <!-- Expiry Legend -->
+      <div class="expiry-legend">
+        <span class="badge badge-expired">Expired</span>
+        <span class="badge badge-critical">≤ 3 days</span>
+        <span class="badge badge-warning">≤ 7 days</span>
+        <span class="badge badge-fresh">Fresh</span>
+      </div>
 
-<h2>Inventory</h2>
-<div id="inventory"></div>
+      <!-- Inventory Table -->
+      <section id="inventory-list">
+        <p class="loading-text">Loading inventory…</p>
+      </section>
+    </main>
 
-<script src="/js/inventory.js"></script>
+    <!-- Add / Edit Modal -->
+    <div id="modal-overlay" class="modal-overlay hidden">
+      <div class="modal">
+        <div class="modal-header">
+          <h2 id="modal-title">Add Ingredient</h2>
+          <button class="modal-close" id="btn-close-modal">&times;</button>
+        </div>
+        <form id="inventory-form" novalidate>
+          <input type="hidden" id="item-id" />
+
+          <label for="input-name">Ingredient Name</label>
+          <input type="text" id="input-name" class="input" placeholder="e.g. Chicken Breast" required />
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="input-quantity">Quantity</label>
+              <input type="number" id="input-quantity" class="input" min="0.1" step="0.1" placeholder="2" required />
+            </div>
+            <div class="form-group">
+              <label for="input-unit">Unit</label>
+              <select id="input-unit" class="input" required>
+                <option value="">Select…</option>
+                <option value="count">count</option>
+                <option value="lbs">lbs</option>
+                <option value="oz">oz</option>
+                <option value="cups">cups</option>
+                <option value="tbsp">tbsp</option>
+                <option value="tsp">tsp</option>
+                <option value="liters">liters</option>
+                <option value="ml">ml</option>
+                <option value="cans">cans</option>
+                <option value="slices">slices</option>
+                <option value="heads">heads</option>
+                <option value="stalks">stalks</option>
+                <option value="strips">strips</option>
+                <option value="ears">ears</option>
+              </select>
+            </div>
+          </div>
+
+          <label for="input-category">Category</label>
+          <select id="input-category" class="input" required>
+            <option value="">Select…</option>
+            <option value="Produce">Produce</option>
+            <option value="Meat">Meat</option>
+            <option value="Seafood">Seafood</option>
+            <option value="Dairy">Dairy</option>
+            <option value="Pantry">Pantry</option>
+            <option value="Spices">Spices</option>
+            <option value="Protein">Protein</option>
+          </select>
+
+          <label for="input-expiry">Expiration Date <span class="hint">(optional)</span></label>
+          <input type="date" id="input-expiry" class="input" />
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" id="btn-cancel">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Ingredient</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>🍽️ RecipeRoulette &mdash; Built with Node, Express & MongoDB</p>
+    </footer>
+
+    <script type="module" src="js/inventory.js"></script>
+  </body>
+</html>

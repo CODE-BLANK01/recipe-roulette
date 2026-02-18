@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Roulette – RecipeRoulette</title>
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/roulette.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="index.html" class="nav-logo">🍽️ RecipeRoulette</a>
+      <ul class="nav-links">
+        <li><a href="recipes.html">Recipes</a></li>
+        <li><a href="inventory.html">Inventory</a></li>
+        <li><a href="roulette.html" class="active">Roulette</a></li>
+      </ul>
+    </nav>
+
+    <main class="page-container">
+      <div class="page-header">
+        <h1>🎲 Recipe Roulette</h1>
+        <p class="page-subtitle">See what you can cook right now based on your inventory.</p>
+      </div>
+
+      <div class="roulette-actions">
+        <button class="btn btn-primary btn-spin" id="btn-spin">Spin the Roulette 🎲</button>
+      </div>
+
+      <!-- Cookable Now -->
+      <section class="roulette-section" id="section-cookable">
+        <h2 class="section-title">
+          <span class="section-icon">✅</span> Cook Right Now
+          <span class="section-count" id="count-cookable"></span>
+        </h2>
+        <p class="section-desc">You have all the ingredients for these recipes.</p>
+        <div id="cookable-grid" class="recipe-grid">
+          <p class="empty-text">Hit "Spin the Roulette" to get started!</p>
+        </div>
+      </section>
+
+      <!-- Almost Cookable -->
+      <section class="roulette-section" id="section-almost">
+        <h2 class="section-title">
+          <span class="section-icon">🛒</span> Almost There
+          <span class="section-count" id="count-almost"></span>
+        </h2>
+        <p class="section-desc">These recipes are missing only 1–2 ingredients.</p>
+        <div id="almost-grid" class="recipe-grid">
+          <p class="empty-text">Hit "Spin the Roulette" to get started!</p>
+        </div>
+      </section>
+
+      <!-- Shopping List -->
+      <section class="roulette-section" id="section-shopping">
+        <div class="shopping-header">
+          <h2 class="section-title">
+            <span class="section-icon">📋</span> Shopping List
+          </h2>
+          <button class="btn btn-secondary" id="btn-copy-list">Copy List</button>
+        </div>
+        <p class="section-desc">Missing ingredients from almost-cookable recipes.</p>
+        <ul id="shopping-list" class="shopping-list">
+          <li class="empty-text">No shopping list yet.</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>🍽️ RecipeRoulette &mdash; Built with Node, Express & MongoDB</p>
+    </footer>
+
+    <script type="module" src="js/roulette.js"></script>
+  </body>
+</html>

@@ -1,0 +1,126 @@
+/* ── Expiry Legend ───────────────────────────────────────── */
+.expiry-legend {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+}
+
+/* ── Category Group ─────────────────────────────────────── */
+.category-group {
+  margin-bottom: var(--space-xl);
+}
+
+.category-title {
+  font-size: 1.05rem;
+  color: var(--clr-primary);
+  margin-bottom: var(--space-sm);
+  padding-bottom: var(--space-xs);
+  border-bottom: 2px solid var(--clr-border);
+}
+
+/* ── Inventory Table ────────────────────────────────────── */
+.inventory-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  font-size: 0.9rem;
+}
+
+.inventory-table thead {
+  background: var(--clr-surface-alt);
+  border-bottom: 2px solid var(--clr-border);
+}
+
+.inventory-table th {
+  text-align: left;
+  padding: var(--space-sm) var(--space-md);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--clr-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.inventory-table td {
+  padding: var(--space-sm) var(--space-md);
+  border-top: 1px solid var(--clr-border);
+  color: var(--clr-text);
+  vertical-align: middle;
+}
+
+.inventory-table tbody tr {
+  transition: background 0.15s;
+}
+
+.inventory-table tbody tr:hover {
+  background: var(--clr-primary-light);
+}
+
+/* ── Row expiry tinting ─────────────────────────────────── */
+.row-expired {
+  background-color: var(--clr-expired-bg) !important;
+}
+
+.row-critical {
+  background-color: var(--clr-critical-bg) !important;
+}
+
+.row-warning {
+  background-color: var(--clr-warning-bg) !important;
+}
+
+/* ── Row actions ────────────────────────────────────────── */
+.row-actions {
+  display: flex;
+  gap: var(--space-xs);
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .inventory-table thead {
+    display: none;
+  }
+
+  .inventory-table,
+  .inventory-table tbody,
+  .inventory-table tr,
+  .inventory-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .inventory-table tr {
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-sm);
+    padding: var(--space-sm);
+  }
+
+  .inventory-table td {
+    border: none;
+    padding: var(--space-xs) var(--space-sm);
+  }
+
+  .inventory-table td::before {
+    content: attr(data-label) ': ';
+    font-weight: 700;
+    color: var(--clr-text-muted);
+    font-size: 0.78rem;
+  }
+
+  .row-actions {
+    justify-content: flex-end;
+    padding-top: var(--space-xs);
+  }
+}
