@@ -1,89 +1,96 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RecipeRoulette</title>
-    <link rel="stylesheet" href="css/global.css" />
-    <link rel="stylesheet" href="css/home.css" />
-  </head>
-  <body>
-    <nav class="navbar">
-      <a href="index.html" class="nav-logo">🍽️ RecipeRoulette</a>
-      <ul class="nav-links">
-        <li><a href="recipes.html">Recipes</a></li>
-        <li><a href="inventory.html">Inventory</a></li>
-        <li><a href="roulette.html">Roulette</a></li>
-      </ul>
-    </nav>
 
-    <main>
-      <section class="hero">
-        <div class="hero-text">
-          <h1>Stop Cooking the Same 5 Meals</h1>
-          <p>
-            Discover what you can cook with ingredients you already have.
-            Reduce waste, save money, and bring variety back to your kitchen.
-          </p>
-          <div class="hero-buttons">
-            <a href="roulette.html" class="btn btn-primary">Spin the Roulette 🎲</a>
-            <a href="recipes.html" class="btn btn-secondary">Browse Recipes</a>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RecipeRoulette</title>
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/home.css" />
+</head>
+
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">🍽️ RecipeRoulette</a>
+    <ul class="nav-links">
+      <li><a href="recipes.html">Recipes</a></li>
+      <li><a href="inventory.html">Inventory</a></li>
+      <li><a href="roulette.html">Roulette</a></li>
+    </ul>
+    <div class="nav-user" id="nav-user">
+      <!-- Populated by nav.js -->
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Stop Cooking the Same 5 Meals</h1>
+        <p>
+          Discover what you can cook with ingredients you already have.
+          Reduce waste, save money, and bring variety back to your kitchen.
+        </p>
+        <div class="hero-buttons">
+          <a href="roulette.html" class="btn btn-primary">Spin the Roulette 🎲</a>
+          <a href="recipes.html" class="btn btn-secondary">Browse Recipes</a>
+        </div>
+      </div>
+      <div class="hero-image">🥘</div>
+    </section>
+
+    <section class="features">
+      <div class="feature-card">
+        <span class="feature-icon">🧺</span>
+        <h3>Track Your Pantry</h3>
+        <p>Add ingredients with quantities and expiry dates. Get color-coded warnings before food goes bad.</p>
+        <a href="inventory.html" class="feature-link">Manage Inventory →</a>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📖</span>
+        <h3>Build Your Recipe Book</h3>
+        <p>Add, edit and favorite recipes. Filter by difficulty or prep time to match your schedule.</p>
+        <a href="recipes.html" class="feature-link">View Recipes →</a>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🎲</span>
+        <h3>Spin the Roulette</h3>
+        <p>See what you can cook right now — and what's just 1–2 ingredients away. Generate a shopping list instantly.
+        </p>
+        <a href="roulette.html" class="feature-link">Try Roulette →</a>
+      </div>
+    </section>
+
+    <section class="how-it-works">
+      <h2>How It Works</h2>
+      <ol class="steps">
+        <li>
+          <span class="step-number">1</span>
+          <div>
+            <h4>Add Your Ingredients</h4>
+            <p>Log what's in your fridge and pantry, including quantities and expiry dates.</p>
           </div>
-        </div>
-        <div class="hero-image">🥘</div>
-      </section>
+        </li>
+        <li>
+          <span class="step-number">2</span>
+          <div>
+            <h4>Browse or Add Recipes</h4>
+            <p>Explore the recipe collection or add your own favorites.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-number">3</span>
+          <div>
+            <h4>Spin the Roulette</h4>
+            <p>Instantly see cookable meals and almost-cookable ones with a generated shopping list.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+  </main>
 
-      <section class="features">
-        <div class="feature-card">
-          <span class="feature-icon">🧺</span>
-          <h3>Track Your Pantry</h3>
-          <p>Add ingredients with quantities and expiry dates. Get color-coded warnings before food goes bad.</p>
-          <a href="inventory.html" class="feature-link">Manage Inventory →</a>
-        </div>
-        <div class="feature-card">
-          <span class="feature-icon">📖</span>
-          <h3>Build Your Recipe Book</h3>
-          <p>Add, edit and favorite recipes. Filter by difficulty or prep time to match your schedule.</p>
-          <a href="recipes.html" class="feature-link">View Recipes →</a>
-        </div>
-        <div class="feature-card">
-          <span class="feature-icon">🎲</span>
-          <h3>Spin the Roulette</h3>
-          <p>See what you can cook right now — and what's just 1–2 ingredients away. Generate a shopping list instantly.</p>
-          <a href="roulette.html" class="feature-link">Try Roulette →</a>
-        </div>
-      </section>
+  <footer class="footer">
+    <p>🍽️ RecipeRoulette &mdash; Built with Node, Express & MongoDB</p>
+  </footer>
+</body>
 
-      <section class="how-it-works">
-        <h2>How It Works</h2>
-        <ol class="steps">
-          <li>
-            <span class="step-number">1</span>
-            <div>
-              <h4>Add Your Ingredients</h4>
-              <p>Log what's in your fridge and pantry, including quantities and expiry dates.</p>
-            </div>
-          </li>
-          <li>
-            <span class="step-number">2</span>
-            <div>
-              <h4>Browse or Add Recipes</h4>
-              <p>Explore the recipe collection or add your own favorites.</p>
-            </div>
-          </li>
-          <li>
-            <span class="step-number">3</span>
-            <div>
-              <h4>Spin the Roulette</h4>
-              <p>Instantly see cookable meals and almost-cookable ones with a generated shopping list.</p>
-            </div>
-          </li>
-        </ol>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <p>🍽️ RecipeRoulette &mdash; Built with Node, Express & MongoDB</p>
-    </footer>
-  </body>
 </html>

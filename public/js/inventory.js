@@ -5,6 +5,10 @@ import {
   deleteInventoryItem,
 } from './api.js';
 
+import { requireLogin, initNav } from './nav.js';
+requireLogin(); // redirects to /login.html if no token
+initNav();      // renders user name + logout in navbar
+
 // ── DOM refs ──────────────────────────────────────────────
 const listEl = document.getElementById('inventory-list');
 const categoryEl = document.getElementById('filter-category');

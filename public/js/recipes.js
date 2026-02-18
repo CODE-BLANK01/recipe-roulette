@@ -7,6 +7,10 @@ import {
   toggleFavorite,
 } from './api.js';
 
+import { requireLogin, initNav } from './nav.js';
+requireLogin(); // redirects to /login.html if no token
+initNav(); 
+
 // ── DOM refs ──────────────────────────────────────────────
 const grid = document.getElementById('recipe-grid');
 const searchEl = document.getElementById('search');
@@ -56,8 +60,10 @@ function renderGrid(recipes) {
       <p class="card-ingredients">${r.ingredients.slice(0, 4).join(', ')}${r.ingredients.length > 4 ? '…' : ''}</p>
       <div class="card-actions">
         <button class="btn btn-secondary btn-sm" data-action="view" data-id="${r._id}">View</button>
+        ${r.isOwner ? `
         <button class="btn btn-secondary btn-sm" data-action="edit" data-id="${r._id}">Edit</button>
         <button class="btn btn-danger btn-sm" data-action="delete" data-id="${r._id}">Delete</button>
+        ` : ''}
       </div>
     </article>`
     )

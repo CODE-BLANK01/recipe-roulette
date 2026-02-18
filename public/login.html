@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login – RecipeRoulette</title>
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/login.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="index.html" class="nav-logo">🍽️ RecipeRoulette</a>
+    </nav>
+
+    <main class="auth-container">
+      <div class="auth-card">
+        <div class="auth-header">
+          <span class="auth-icon">🍽️</span>
+          <h1>Welcome Back</h1>
+          <p>Sign in to manage your personal pantry</p>
+        </div>
+
+        <!-- Tabs -->
+        <div class="auth-tabs">
+          <button class="auth-tab active" id="tab-login">Sign In</button>
+          <button class="auth-tab" id="tab-register">Create Account</button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="login-form" novalidate>
+          <p class="auth-error" id="login-error"></p>
+
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" class="input" placeholder="you@example.com" required />
+
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" class="input" placeholder="••••••••" required />
+
+          <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+        </form>
+
+        <!-- Register Form -->
+        <form id="register-form" class="hidden" novalidate>
+          <p class="auth-error" id="register-error"></p>
+
+          <label for="register-name">Full Name</label>
+          <input type="text" id="register-name" class="input" placeholder="Maria Garcia" required />
+
+          <label for="register-email">Email</label>
+          <input type="email" id="register-email" class="input" placeholder="you@example.com" required />
+
+          <label for="register-password">Password</label>
+          <input type="password" id="register-password" class="input" placeholder="Min. 6 characters" required />
+
+          <label for="register-confirm">Confirm Password</label>
+          <input type="password" id="register-confirm" class="input" placeholder="••••••••" required />
+
+          <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+        </form>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>🍽️ RecipeRoulette &mdash; Built with Node, Express & MongoDB</p>
+    </footer>
+
+    <script type="module" src="js/auth.js"></script>
+  </body>
+</html>

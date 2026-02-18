@@ -1,5 +1,9 @@
 import { getMatch, getShoppingList } from './api.js';
 
+import { requireLogin, initNav } from './nav.js';
+requireLogin(); // redirects to /login.html if no token
+initNav(); 
+
 // ── DOM refs ──────────────────────────────────────────────
 const btnSpin = document.getElementById('btn-spin');
 const cookableGrid = document.getElementById('cookable-grid');

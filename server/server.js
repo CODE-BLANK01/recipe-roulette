@@ -1,19 +1,24 @@
-import express from "express";
-import dotenv from "dotenv";
-import { connectDB } from "./db/database.js";
-import recipesRouter from "./routes/recipes.js";
-import inventoryRouter from "./routes/inventory.js";
-
-dotenv.config();
+import express from 'express';
+import cors from 'cors';
+import 'dotenv/config';
+import { connectDB } from './db/database.js';
+import recipesRouter from './routes/recipes.js';
+import inventoryRouter from './routes/inventory.js';
+import authRouter from './routes/auth.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Middleware
+app.use(cors());
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static('public'));
 
-app.use("/api/recipes", recipesRouter);
-app.use("/api/inventory", inventoryRouter);
+// Routes
+app.use('/api/auth', authRouter);
+app.use('/api/recipes', recipesRouter);
+app.use('/api/inventory', inventoryRouter);
+
 // Health check
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', message: 'RecipeRoulette API is running 🍽️' });

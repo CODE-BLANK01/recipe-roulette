@@ -1,15 +1,52 @@
 const BASE = '/api';
 
+function getToken() {
+  return localStorage.getItem('rr_token');
+}
+
 async function request(path, options = {}) {
-  const res = await fetch(`${BASE}${path}`, {
-    headers: { 'Content-Type': 'application/json' },
-    ...options,
-  });
+  const token = getToken();
+  const headers = { 'Content-Type': 'application/json', ...options.headers };
+  if (token) headers['Authorization'] = `Bearer ${token}`;
+
+  const res = await fetch(`${BASE}${path}`, { ...options, headers });
   if (!res.ok) {
     const err = await res.json().catch(() => ({ error: res.statusText }));
+    // Token expired or invalid — clear and redirect to login
+    if (res.status === 401) {
+      localStorage.removeItem('rr_token');
+      localStorage.removeItem('rr_user');
+      window.location.href = '/login.html';
+    }
     throw new Error(err.error || 'Request failed');
   }
   return res.json();
+}
+
+// ── Auth ──────────────────────────────────────────────────
+export const register = (data) =>
+  request('/auth/register', { method: 'POST', body: JSON.stringify(data) });
+
+export const login = (data) =>
+  request('/auth/login', { method: 'POST', body: JSON.stringify(data) });
+
+export function saveSession(token, user) {
+  localStorage.setItem('rr_token', token);
+  localStorage.setItem('rr_user', JSON.stringify(user));
+}
+
+export function clearSession() {
+  localStorage.removeItem('rr_token');
+  localStorage.removeItem('rr_user');
+}
+
+export function getCurrentUser() {
+  const u = localStorage.getItem('rr_user');
+  return u ? JSON.parse(u) : null;
+}
+
+export function isLoggedIn() {
+  return !!getToken();
 }
 
 // ── Recipes ──────────────────────────────────────────────

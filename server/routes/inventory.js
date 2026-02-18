@@ -1,8 +1,12 @@
 import express from 'express';
 import { getDB } from '../db/database.js';
 import { ObjectId } from 'mongodb';
+import { requireAuth } from '../middleware/auth.js';
 
 const router = express.Router();
+
+// All inventory routes require authentication
+router.use(requireAuth);
 
 // Helper — attach expiry status to an item so frontend can color-code
 function withExpiryStatus(item) {
@@ -27,7 +31,7 @@ router.get('/', async (req, res) => {
     const db = getDB();
     const { category, sortByExpiry } = req.query;
 
-    const query = {};
+    const query = { userId: req.userId };
     if (category) query.category = category;
 
     const sort = sortByExpiry === 'true' ? { expirationDate: 1 } : {};
@@ -50,7 +54,7 @@ router.get('/:id', async (req, res) => {
     const db = getDB();
     const item = await db
       .collection('inventory')
-      .findOne({ _id: new ObjectId(req.params.id) });
+      .findOne({ _id: new ObjectId(req.params.id), userId: req.userId });
 
     if (!item) return res.status(404).json({ error: 'Item not found' });
     res.json(withExpiryStatus(item));
@@ -76,6 +80,7 @@ router.post('/', async (req, res) => {
       unit,
       category,
       expirationDate: expirationDate ? new Date(expirationDate) : null,
+      userId: req.userId,
       addedAt: new Date(),
     };
 
@@ -104,7 +109,10 @@ router.put('/:id', async (req, res) => {
 
     const result = await db
       .collection('inventory')
-      .updateOne({ _id: new ObjectId(req.params.id) }, { $set: updates });
+      .updateOne(
+        { _id: new ObjectId(req.params.id), userId: req.userId },
+        { $set: updates }
+      );
 
     if (result.matchedCount === 0) {
       return res.status(404).json({ error: 'Item not found' });
@@ -120,7 +128,7 @@ router.delete('/:id', async (req, res) => {
   try {
     const result = await getDB()
       .collection('inventory')
-      .deleteOne({ _id: new ObjectId(req.params.id) });
+      .deleteOne({ _id: new ObjectId(req.params.id), userId: req.userId });
 
     if (result.deletedCount === 0) {
       return res.status(404).json({ error: 'Item not found' });
