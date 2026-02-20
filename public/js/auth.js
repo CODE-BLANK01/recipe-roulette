@@ -15,16 +15,16 @@ const registerError = document.getElementById('register-error');
 tabLogin.addEventListener('click', () => {
   tabLogin.classList.add('active');
   tabRegister.classList.remove('active');
-  loginForm.classList.remove('hidden');
-  registerForm.classList.add('hidden');
+  loginForm.classList.add('active');
+  registerForm.classList.remove('active');
   loginError.textContent = '';
 });
 
 tabRegister.addEventListener('click', () => {
   tabRegister.classList.add('active');
   tabLogin.classList.remove('active');
-  registerForm.classList.remove('hidden');
-  loginForm.classList.add('hidden');
+  registerForm.classList.add('active');
+  loginForm.classList.remove('active');
   registerError.textContent = '';
 });
 

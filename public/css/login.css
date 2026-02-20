@@ -72,6 +72,20 @@
   box-shadow: var(--shadow-sm);
 }
 
+/* ── Forms wrapper ──────────────────────────────────────── */
+.auth-forms {
+  position: relative;
+}
+
+.auth-form {
+  display: none;
+  flex-direction: column;
+}
+
+.auth-form.active {
+  display: flex;
+}
+
 /* ── Forms ──────────────────────────────────────────────── */
 form label {
   margin-top: var(--space-md);
